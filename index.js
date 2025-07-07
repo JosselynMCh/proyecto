@@ -8,12 +8,16 @@ const port = 3001;
 
 // Conexión a PostgreSQL
 const pool = new Pool({
-    user: 'postgres',       // tu usuario de PostgreSQL
-    host: 'localhost',
-    database: 'prueba',    // tu base de datos
-    password: 'Josselyn', // tu contraseña de PostgreSQL
-    port: 5432,
+    user: process.env.PGUSER,
+    host: process.env.PGHOST,
+    database: process.env.PGDATABASE,
+    password: process.env.PGPASSWORD,
+    port: process.env.PGPORT,
+    ssl: {
+        rejectUnauthorized: false
+    }
 });
+
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
